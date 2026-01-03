@@ -211,3 +211,4 @@ FodyWeavers.xsd
 *.msp
 *.sln.iml
 .idea
+*.claude/

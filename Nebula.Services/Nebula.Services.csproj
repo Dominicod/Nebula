@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Nebula.Architecture\Nebula.Architecture.csproj"/>
+        <ProjectReference Include="..\Nebula.Domain\Nebula.Domain.csproj"/>
+    </ItemGroup>
+
 </Project>

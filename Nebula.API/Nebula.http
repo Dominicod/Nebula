@@ -1,0 +1,6 @@
+@Nebula_HostAddress = http://localhost:5074
+
+GET {{Nebula_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

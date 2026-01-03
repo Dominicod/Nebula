@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebula.API", "Nebula.API\Nebula.API.csproj", "{0B23ECEF-A9B5-4DC1-8714-A4F761561BE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebula.Domain", "Nebula.Domain\Nebula.Domain.csproj", "{CFBE21CC-428F-4F3C-B6E7-CC8DAFC032F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebula.Architecture", "Nebula.Architecture\Nebula.Architecture.csproj", "{A415445F-E4C4-47FE-B8C6-956216F99700}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebula.Services", "Nebula.Services\Nebula.Services.csproj", "{3DA4B760-F590-4D8B-9C03-20A9615AAB4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,17 @@ Global
 		{0B23ECEF-A9B5-4DC1-8714-A4F761561BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B23ECEF-A9B5-4DC1-8714-A4F761561BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B23ECEF-A9B5-4DC1-8714-A4F761561BE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFBE21CC-428F-4F3C-B6E7-CC8DAFC032F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFBE21CC-428F-4F3C-B6E7-CC8DAFC032F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFBE21CC-428F-4F3C-B6E7-CC8DAFC032F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFBE21CC-428F-4F3C-B6E7-CC8DAFC032F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A415445F-E4C4-47FE-B8C6-956216F99700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A415445F-E4C4-47FE-B8C6-956216F99700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A415445F-E4C4-47FE-B8C6-956216F99700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A415445F-E4C4-47FE-B8C6-956216F99700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DA4B760-F590-4D8B-9C03-20A9615AAB4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DA4B760-F590-4D8B-9C03-20A9615AAB4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DA4B760-F590-4D8B-9C03-20A9615AAB4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DA4B760-F590-4D8B-9C03-20A9615AAB4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

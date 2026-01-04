@@ -1,5 +1,5 @@
-using Nebula.Services.Common;
-using Nebula.Services.Contracts.Networking;
+using Nebula.DataTransfer.Common;
+using Nebula.DataTransfer.Contracts.Networking;
 
 namespace Nebula.Contracts.Services.Networking;
 

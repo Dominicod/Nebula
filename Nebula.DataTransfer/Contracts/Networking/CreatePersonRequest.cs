@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Nebula.Services.Contracts.Networking;
+namespace Nebula.DataTransfer.Contracts.Networking;
 
 /// <summary>
 /// Request contract for creating a new person.

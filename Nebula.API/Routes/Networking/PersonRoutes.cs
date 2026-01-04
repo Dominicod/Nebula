@@ -1,10 +1,10 @@
 using Nebula.Contracts.Services.Networking;
-using Nebula.Services.Common;
-using Nebula.Services.Contracts.Networking;
+using Nebula.DataTransfer.Common;
+using Nebula.DataTransfer.Contracts.Networking;
 
 namespace Nebula.API.Routes.Networking;
 
-public static class PersonRoutes
+internal static class PersonRoutes
 {
     public static RouteGroupBuilder MapPersonRoutes(this IEndpointRouteBuilder routes)
     {

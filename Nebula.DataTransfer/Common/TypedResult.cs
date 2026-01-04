@@ -1,6 +1,6 @@
-using Nebula.Services.Contracts;
+using Nebula.DataTransfer.Contracts;
 
-namespace Nebula.Services.Common;
+namespace Nebula.DataTransfer.Common;
 
 /// <summary>
 /// Represents the result of an operation with typed data and error handling.

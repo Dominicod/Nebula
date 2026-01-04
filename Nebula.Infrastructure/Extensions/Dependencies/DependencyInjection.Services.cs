@@ -14,10 +14,8 @@ public static partial class DependencyInjection
     /// </summary>
     /// <param name="services">The service collection.</param>
     /// <returns>The service collection for chaining.</returns>
-    public static IServiceCollection AddNebulaServices(this IServiceCollection services)
+    public static void AddNebulaServices(this IServiceCollection services)
     {
         services.AddScoped<IPersonService, PersonService>();
-
-        return services;
     }
 }

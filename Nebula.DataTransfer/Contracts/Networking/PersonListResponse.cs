@@ -1,4 +1,4 @@
-namespace Nebula.Services.Contracts.Networking;
+namespace Nebula.DataTransfer.Contracts.Networking;
 
 /// <summary>
 /// Response contract representing a collection of persons.

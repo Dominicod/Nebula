@@ -4,7 +4,7 @@ using Nebula.Domain.Entities.Networking;
 namespace Nebula.Infrastructure.Data;
 
 /// <inheritdoc/>
-public sealed class NebulaDbContext : DbContext
+internal sealed class NebulaDbContext : DbContext
 {
     /// <inheritdoc/>
     public NebulaDbContext(DbContextOptions<NebulaDbContext> options) : base(options) { }

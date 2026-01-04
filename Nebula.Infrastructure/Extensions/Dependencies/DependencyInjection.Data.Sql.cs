@@ -17,7 +17,7 @@ public static partial class DependencyInjection
     /// <param name="services">The service collection.</param>
     /// <param name="configuration">The application configuration.</param>
     /// <returns>The service collection for chaining.</returns>
-    public static IServiceCollection AddSqlServer(this IServiceCollection services, IConfiguration configuration)
+    public static void AddSqlServer(this IServiceCollection services, IConfiguration configuration)
     {
         var dbConfig = configuration
             .GetSection(NebulaDbContextConfiguration.SectionName)
@@ -27,7 +27,5 @@ public static partial class DependencyInjection
 
         services.AddDbContext<NebulaDbContext>(options =>
             options.UseSqlServer(dbConfig.ConnectionString));
-
-        return services;
     }
 }

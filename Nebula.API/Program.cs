@@ -1,13 +1,11 @@
 using Nebula.API.Routes.Networking;
-using Nebula.Architecture.Extensions.Dependencies;
-using Nebula.Services.Extensions.Dependencies;
+using Nebula.Infrastructure.Extensions.Dependencies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Services
 builder.Services.AddOpenApi();
 builder.Services.AddSqlServer(builder.Configuration);
-builder.Services.AddNebulaRepositories();
 builder.Services.AddNebulaServices();
 builder.Services.AddValidation(); // Allows data-attributes to be assigned to requests for model validation
 builder.Services.AddApiVersioning(options =>

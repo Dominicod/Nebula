@@ -1,4 +1,4 @@
-namespace Nebula.Services.DTOs.Networking;
+namespace Nebula.DataTransfer.Networking;
 
 /// <summary>
 /// Data transfer object for Person entity.

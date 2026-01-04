@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Nebula.Architecture.Configuration;
-using Nebula.Architecture.Data;
+using Nebula.Infrastructure.Configuration;
+using Nebula.Infrastructure.Data;
 
-namespace Nebula.Architecture.Extensions.Dependencies;
+namespace Nebula.Infrastructure.Extensions.Dependencies;
 
 /// <summary>
 /// Extension methods for registering SQL data dependencies.

@@ -12,8 +12,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Nebula.Domain\Nebula.Domain.csproj"/>
-        <ProjectReference Include="..\Nebula.Services\Nebula.Services.csproj"/>
+      <ProjectReference Include="..\Nebula.Domain\Nebula.Domain.csproj" />
+      <ProjectReference Include="..\Nebula.Services\Nebula.Services.csproj" />
     </ItemGroup>
 
 </Project>

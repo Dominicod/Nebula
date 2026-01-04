@@ -1,4 +1,4 @@
-namespace Nebula.Architecture.Configuration.Shared;
+namespace Nebula.Infrastructure.Configuration.Shared;
 
 /// <summary>
 /// Base class for configuration sections providing a standardized section name.

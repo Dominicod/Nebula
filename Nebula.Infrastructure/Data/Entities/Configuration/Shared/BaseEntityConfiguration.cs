@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Nebula.Domain.Entities.Shared;
 
-namespace Nebula.Architecture.Data.Entities.Configuration.Shared;
+namespace Nebula.Infrastructure.Data.Entities.Configuration.Shared;
 
 /// <summary>
 /// Base EF Core configuration for entities inheriting from <see cref="BaseEntity{TId}"/>.

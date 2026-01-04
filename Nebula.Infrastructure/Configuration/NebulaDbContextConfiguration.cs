@@ -1,6 +1,6 @@
-using Nebula.Architecture.Configuration.Shared;
+using Nebula.Infrastructure.Configuration.Shared;
 
-namespace Nebula.Architecture.Configuration;
+namespace Nebula.Infrastructure.Configuration;
 
 /// <summary>
 /// Configuration options for the Nebula database context.

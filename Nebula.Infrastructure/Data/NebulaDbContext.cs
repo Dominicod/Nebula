@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Nebula.Domain.Entities.Networking;
 
-namespace Nebula.Architecture.Data;
+namespace Nebula.Infrastructure.Data;
 
 /// <inheritdoc/>
 public sealed class NebulaDbContext : DbContext

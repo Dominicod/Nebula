@@ -1,12 +1,13 @@
 using Microsoft.Extensions.DependencyInjection;
+using Nebula.Contracts.Services.Networking;
 using Nebula.Services.Networking;
 
-namespace Nebula.Services.Extensions.Dependencies;
+namespace Nebula.Infrastructure.Extensions.Dependencies;
 
 /// <summary>
 /// Extension methods for registering service dependencies.
 /// </summary>
-public static class DependencyInjection
+public static partial class DependencyInjection
 {
     /// <summary>
     /// Adds application services to the dependency injection container.

@@ -1,7 +1,7 @@
 using Nebula.Services.Common;
 using Nebula.Services.Contracts.Networking;
 
-namespace Nebula.Services.Networking;
+namespace Nebula.Contracts.Services.Networking;
 
 /// <summary>
 /// Service interface for Person business operations.
@@ -9,21 +9,6 @@ namespace Nebula.Services.Networking;
 /// </summary>
 public interface IPersonService
 {
-    /// <summary>
-    /// Gets all persons.
-    /// </summary>
-    /// <param name="cancellationToken">Cancellation token.</param>
-    /// <returns>TypedResult containing collection of person responses.</returns>
-    Task<TypedResult<PersonListResponse>> GetAllAsync(CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// Gets a person by their unique identifier.
-    /// </summary>
-    /// <param name="id">The person's unique identifier.</param>
-    /// <param name="cancellationToken">Cancellation token.</param>
-    /// <returns>TypedResult containing person response if found.</returns>
-    Task<TypedResult<PersonResponse>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
-
     /// <summary>
     /// Creates a new person.
     /// </summary>

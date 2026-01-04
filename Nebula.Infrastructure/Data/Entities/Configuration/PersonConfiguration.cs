@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Nebula.Architecture.Data.Entities.Configuration.Shared;
 using Nebula.Domain.Entities.Networking;
+using Nebula.Infrastructure.Data.Entities.Configuration.Shared;
 
-namespace Nebula.Architecture.Data.Entities.Configuration;
+namespace Nebula.Infrastructure.Data.Entities.Configuration;
 
 /// <summary>
 /// EF Core configuration for the <see cref="Person"/> entity.

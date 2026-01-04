@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 namespace Nebula.DataTransfer.Contracts.Networking;
 
 /// <summary>
-/// Request contract for creating a new person.
+/// Request contract for updating an existing person.
 /// </summary>
-public sealed record CreatePersonRequest
+public sealed record UpdatePersonCommand : ICommand
 {
     /// <summary>
     /// Gets the first name of the person.

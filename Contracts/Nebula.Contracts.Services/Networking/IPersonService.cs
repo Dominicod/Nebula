@@ -12,19 +12,19 @@ public interface IPersonService
     /// <summary>
     /// Creates a new person.
     /// </summary>
-    /// <param name="request">The create person request.</param>
+    /// <param name="command">The create person command.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>TypedResult containing the created person response.</returns>
-    Task<TypedResult<PersonResponse>> CreateAsync(CreatePersonRequest request, CancellationToken cancellationToken = default);
+    Task<TypedResult<PersonResponse>> CreateAsync(CreatePersonCommand command, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Updates an existing person.
     /// </summary>
     /// <param name="id">The person's unique identifier.</param>
-    /// <param name="request">The update person request.</param>
+    /// <param name="command">The update person command.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>TypedResult containing the updated person response if found.</returns>
-    Task<TypedResult<PersonResponse>> UpdateAsync(Guid id, UpdatePersonRequest request, CancellationToken cancellationToken = default);
+    Task<TypedResult<PersonResponse>> UpdateAsync(Guid id, UpdatePersonCommand command, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Deletes a person by their unique identifier.

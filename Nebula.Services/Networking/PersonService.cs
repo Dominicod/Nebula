@@ -8,10 +8,10 @@ namespace Nebula.Services.Networking;
 public sealed class PersonService : IPersonService
 {
     /// <inheritdoc />
-    public async Task<TypedResult<PersonResponse>> CreateAsync(CreatePersonRequest request, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+    public async Task<TypedResult<PersonResponse>> CreateAsync(CreatePersonCommand command, CancellationToken cancellationToken = default) => throw new NotImplementedException();
 
     /// <inheritdoc />
-    public async Task<TypedResult<PersonResponse>> UpdateAsync(Guid id, UpdatePersonRequest request, CancellationToken cancellationToken = default) => throw new NotImplementedException();
+    public async Task<TypedResult<PersonResponse>> UpdateAsync(Guid id, UpdatePersonCommand command, CancellationToken cancellationToken = default) => throw new NotImplementedException();
 
     /// <inheritdoc />
     public async Task<TypedResult<PersonResponse>> DeleteAsync(Guid id, CancellationToken cancellationToken = default) => throw new NotImplementedException();

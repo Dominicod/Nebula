@@ -36,10 +36,10 @@ internal static class PersonRoutes
         return group;
     }
 
-    private static async Task<IResult> CreatePerson(CreatePersonRequest request, IPersonService personService,
+    private static async Task<IResult> CreatePerson(CreatePersonCommand command, IPersonService personService,
         CancellationToken cancellationToken) => throw new NotImplementedException();
 
-    private static async Task<IResult> UpdatePerson(Guid id, UpdatePersonRequest request, IPersonService personService,
+    private static async Task<IResult> UpdatePerson(Guid id, UpdatePersonCommand command, IPersonService personService,
         CancellationToken cancellationToken) => throw new NotImplementedException();
 
     private static async Task<IResult> DeletePerson(Guid id, IPersonService personService,

@@ -10,10 +10,10 @@ public class Person : BaseEntity<Guid>
     /// <summary>
     /// Represents the first name of the Person
     /// </summary>
-    public required string FirstName { get; set; }
+    public required string FirstName { get; init; }
 
     /// <summary>
     /// Represents the last name of the Person
     /// </summary>
-    public required string LastName { get; set; }
+    public required string LastName { get; init; }
 }

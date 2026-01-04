@@ -10,116 +10,64 @@ public sealed record TypedResult<T> where T : IResponse
 {
     /// <summary>
     /// Gets a value indicating whether the operation was successful.
+    /// Returns true when there are no error messages and no exception has occurred.
     /// </summary>
-    public bool IsSuccess { get; init; }
+    public bool IsSuccess => ErrorMessages.Count == 0 || HasException;
 
     /// <summary>
-    /// Gets the data returned by the operation (null if failed).
+    /// Gets a value indicating whether an exception has occurred during the operation.
     /// </summary>
-    public T? Data { get; init; }
+    public bool HasException => Exception != null;
 
     /// <summary>
-    /// Gets the error message if the operation failed.
+    /// Gets the data returned by the operation.
     /// </summary>
-    public string? ErrorMessage { get; init; }
+    public T? Data { get; private init; }
 
     /// <summary>
-    /// Gets the error code if the operation failed.
+    /// Gets the collection of error messages that occurred during the operation.
     /// </summary>
-    public string? ErrorCode { get; init; }
+    public List<string> ErrorMessages { get; } = [];
 
     /// <summary>
-    /// Gets the exception details if an exception occurred.
+    /// Gets the exception that occurred during the operation, if any.
     /// </summary>
-    public string? ExceptionDetails { get; init; }
-
-    /// <summary>
-    /// Gets additional error metadata.
-    /// </summary>
-    public Dictionary<string, object>? ErrorMetadata { get; init; }
+    public Exception? Exception { get; private set; }
 
     private TypedResult() { }
 
     /// <summary>
-    /// Creates a successful result with data.
+    /// Creates a new result with the specified data.
     /// </summary>
-    /// <param name="data">The successful operation data.</param>
-    /// <returns>A successful TypedResult.</returns>
-    public static TypedResult<T> Success(T data)
+    /// <param name="data">The data to include in the result.</param>
+    /// <returns>A new TypedResult instance.</returns>
+    public static TypedResult<T> Result(T? data = default)
     {
         return new TypedResult<T>
         {
-            IsSuccess = true,
-            Data = data,
-            ErrorMessage = null,
-            ErrorCode = null,
-            ExceptionDetails = null,
-            ErrorMetadata = null
+            Data = data
         };
     }
 
     /// <summary>
-    /// Creates a failed result with an error message.
+    /// Adds an error message to the result.
     /// </summary>
-    /// <param name="errorMessage">The error message.</param>
-    /// <param name="errorCode">Optional error code.</param>
-    /// <returns>A failed TypedResult.</returns>
-    public static TypedResult<T> Failure(string errorMessage, string? errorCode = null)
+    /// <param name="errorMessage">The error message to add.</param>
+    /// <returns>The current TypedResult instance for method chaining.</returns>
+    public TypedResult<T> WithErrorMessage(string errorMessage)
     {
-        return new TypedResult<T>
-        {
-            IsSuccess = false,
-            Data = default,
-            ErrorMessage = errorMessage,
-            ErrorCode = errorCode,
-            ExceptionDetails = null,
-            ErrorMetadata = null
-        };
+        ErrorMessages.Add(errorMessage);
+        return this;
     }
 
     /// <summary>
-    /// Creates a failed result from an exception.
+    /// Sets an exception on the result.
     /// </summary>
     /// <param name="exception">The exception that occurred.</param>
-    /// <param name="errorMessage">Optional custom error message.</param>
-    /// <param name="errorCode">Optional error code.</param>
-    /// <returns>A failed TypedResult.</returns>
-    public static TypedResult<T> Exception(Exception exception, string? errorMessage = null, string? errorCode = null)
+    /// <returns>The current TypedResult instance for method chaining.</returns>
+    public TypedResult<T> WithException(Exception exception)
     {
-        return new TypedResult<T>
-        {
-            IsSuccess = false,
-            Data = default,
-            ErrorMessage = errorMessage ?? exception.Message,
-            ErrorCode = errorCode ?? "EXCEPTION",
-            ExceptionDetails = exception.ToString(),
-            ErrorMetadata = new Dictionary<string, object>
-            {
-                { "ExceptionType", exception.GetType().Name }
-            }
-        };
-    }
-
-    /// <summary>
-    /// Creates a failed result with detailed error information.
-    /// </summary>
-    /// <param name="errorMessage">The error message.</param>
-    /// <param name="errorCode">The error code.</param>
-    /// <param name="metadata">Additional error metadata.</param>
-    /// <returns>A failed TypedResult.</returns>
-    public static TypedResult<T> FailureDetailed(
-        string errorMessage,
-        string errorCode,
-        Dictionary<string, object>? metadata = null)
-    {
-        return new TypedResult<T>
-        {
-            IsSuccess = false,
-            Data = default,
-            ErrorMessage = errorMessage,
-            ErrorCode = errorCode,
-            ExceptionDetails = null,
-            ErrorMetadata = metadata
-        };
+        Exception = exception;
+        return this;
     }
 }

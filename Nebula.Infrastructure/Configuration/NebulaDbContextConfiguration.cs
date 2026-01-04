@@ -10,5 +10,5 @@ internal sealed class NebulaDbContextConfiguration : BaseConfiguration<NebulaDbC
     /// <summary>
     /// The SQL Server connection string.
     /// </summary>
-    public required string ConnectionString { get; set; }
+    public required string ConnectionString { get; init; }
 }

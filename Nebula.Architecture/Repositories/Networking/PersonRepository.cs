@@ -1,5 +1,6 @@
 using Nebula.Architecture.Data;
-using Nebula.Architecture.DTOs.Networking;
+using Nebula.Services.DTOs.Networking;
+using Nebula.Services.Repositories.Networking;
 using Nebula.Domain.Entities.Networking;
 
 namespace Nebula.Architecture.Repositories.Networking;

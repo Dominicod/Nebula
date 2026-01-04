@@ -13,6 +13,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Nebula.Services\Nebula.Services.csproj"/>
+        <ProjectReference Include="..\Nebula.Architecture\Nebula.Architecture.csproj"/>
         <ProjectReference Include="..\Nebula.Domain\Nebula.Domain.csproj"/>
     </ItemGroup>
 

@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Nebula.Services.Repositories.Networking;
 using Nebula.Architecture.Repositories.Networking;
 
 namespace Nebula.Architecture.Extensions.Dependencies;

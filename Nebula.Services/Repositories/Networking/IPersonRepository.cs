@@ -1,6 +1,6 @@
-using Nebula.Architecture.DTOs.Networking;
+using Nebula.Services.DTOs.Networking;
 
-namespace Nebula.Architecture.Repositories.Networking;
+namespace Nebula.Services.Repositories.Networking;
 
 /// <summary>
 /// Repository interface for Person operations.

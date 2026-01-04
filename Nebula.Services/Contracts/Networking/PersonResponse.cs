@@ -3,7 +3,7 @@ namespace Nebula.Services.Contracts.Networking;
 /// <summary>
 /// Response contract representing a person.
 /// </summary>
-public sealed record PersonResponse
+public sealed record PersonResponse : IResponse
 {
     /// <summary>
     /// Gets the unique identifier of the person.

@@ -1,3 +1,4 @@
+using Nebula.Services.Common;
 using Nebula.Services.Contracts.Networking;
 using Nebula.Services.Networking;
 
@@ -7,80 +8,108 @@ public static class PersonRoutes
 {
     public static RouteGroupBuilder MapPersonRoutes(this IEndpointRouteBuilder routes)
     {
-        var group = routes.MapGroup("/api/v{version:apiVersion}/persons")
+        var group = routes.MapGroup("/api/v{version:apiVersion}/networking/persons")
             .WithTags("Persons");
 
         group.MapGet("/", GetAllPersons)
             .WithName("GetAllPersons")
             .WithSummary("Get all persons")
-            .Produces<IEnumerable<PersonResponse>>();
+            .Produces<TypedResult<PersonListResponse>>()
+            .Produces<TypedResult<PersonListResponse>>(StatusCodes.Status500InternalServerError);
 
         group.MapGet("/{id:guid}", GetPersonById)
             .WithName("GetPersonById")
             .WithSummary("Get a person by ID")
-            .Produces<PersonResponse>()
-            .Produces(StatusCodes.Status404NotFound);
+            .Produces<TypedResult<PersonResponse>>()
+            .Produces<TypedResult<PersonResponse>>(StatusCodes.Status404NotFound)
+            .Produces<TypedResult<PersonResponse>>(StatusCodes.Status500InternalServerError);
 
         group.MapPost("/", CreatePerson)
             .WithName("CreatePerson")
             .WithSummary("Create a new person")
-            .Produces<PersonResponse>(StatusCodes.Status201Created)
-            .Produces(StatusCodes.Status400BadRequest);
+            .Produces<TypedResult<PersonResponse>>(StatusCodes.Status201Created)
+            .Produces<TypedResult<PersonResponse>>(StatusCodes.Status400BadRequest)
+            .Produces<TypedResult<PersonResponse>>(StatusCodes.Status500InternalServerError);
 
         group.MapPut("/{id:guid}", UpdatePerson)
             .WithName("UpdatePerson")
             .WithSummary("Update an existing person")
-            .Produces<PersonResponse>()
-            .Produces(StatusCodes.Status404NotFound)
-            .Produces(StatusCodes.Status400BadRequest);
+            .Produces<TypedResult<PersonResponse>>()
+            .Produces<TypedResult<PersonResponse>>(StatusCodes.Status404NotFound)
+            .Produces<TypedResult<PersonResponse>>(StatusCodes.Status400BadRequest)
+            .Produces<TypedResult<PersonResponse>>(StatusCodes.Status500InternalServerError);
 
         group.MapDelete("/{id:guid}", DeletePerson)
             .WithName("DeletePerson")
             .WithSummary("Delete a person")
-            .Produces(StatusCodes.Status204NoContent)
-            .Produces(StatusCodes.Status404NotFound);
+            .Produces<TypedResult<PersonResponse>>(StatusCodes.Status204NoContent)
+            .Produces<TypedResult<PersonResponse>>(StatusCodes.Status404NotFound)
+            .Produces<TypedResult<PersonResponse>>(StatusCodes.Status500InternalServerError);
 
         return group;
     }
 
     private static async Task<IResult> GetAllPersons(IPersonService personService, CancellationToken cancellationToken)
     {
-        var persons = await personService.GetAllAsync(cancellationToken);
-        return Results.Ok(persons);
+        var result = await personService.GetAllAsync(cancellationToken);
+
+        if (!result.IsSuccess)
+            return Results.Json(result, statusCode: StatusCodes.Status500InternalServerError);
+
+        return Results.Ok(result);
     }
 
     private static async Task<IResult> GetPersonById(Guid id, IPersonService personService, CancellationToken cancellationToken)
     {
-        var person = await personService.GetByIdAsync(id, cancellationToken);
+        var result = await personService.GetByIdAsync(id, cancellationToken);
 
-        if (person == null)
-            return Results.NotFound();
+        if (!result.IsSuccess)
+        {
+            if (result.ErrorCode == "NOT_FOUND")
+                return Results.Json(result, statusCode: StatusCodes.Status404NotFound);
 
-        return Results.Ok(person);
+            return Results.Json(result, statusCode: StatusCodes.Status500InternalServerError);
+        }
+
+        return Results.Ok(result);
     }
 
     private static async Task<IResult> CreatePerson(CreatePersonRequest request, IPersonService personService, CancellationToken cancellationToken)
     {
-        var person = await personService.CreateAsync(request, cancellationToken);
-        return Results.Created($"/api/v1/persons/{person.Id}", person);
+        var result = await personService.CreateAsync(request, cancellationToken);
+
+        if (!result.IsSuccess)
+            return Results.Json(result, statusCode: StatusCodes.Status500InternalServerError);
+
+        return Results.Created($"/api/v1/persons/{result.Data!.Id}", result);
     }
 
     private static async Task<IResult> UpdatePerson(Guid id, UpdatePersonRequest request, IPersonService personService, CancellationToken cancellationToken)
     {
-        var person = await personService.UpdateAsync(id, request, cancellationToken);
+        var result = await personService.UpdateAsync(id, request, cancellationToken);
 
-        if (person == null)
-            return Results.NotFound();
+        if (!result.IsSuccess)
+        {
+            if (result.ErrorCode == "NOT_FOUND")
+                return Results.Json(result, statusCode: StatusCodes.Status404NotFound);
 
-        return Results.Ok(person);
+            return Results.Json(result, statusCode: StatusCodes.Status500InternalServerError);
+        }
+
+        return Results.Ok(result);
     }
 
     private static async Task<IResult> DeletePerson(Guid id, IPersonService personService, CancellationToken cancellationToken)
     {
-        var deleted = await personService.DeleteAsync(id, cancellationToken);
+        var result = await personService.DeleteAsync(id, cancellationToken);
 
-        if (!deleted)
-            return Results.NotFound();
+        if (!result.IsSuccess)
+        {
+            if (result.ErrorCode == "NOT_FOUND")
+                return Results.Json(result, statusCode: StatusCodes.Status404NotFound);
+
+            return Results.Json(result, statusCode: StatusCodes.Status500InternalServerError);
+        }
 
         return Results.NoContent();
     }

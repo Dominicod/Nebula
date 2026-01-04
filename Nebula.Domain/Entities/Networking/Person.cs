@@ -1,6 +1,6 @@
 using Nebula.Domain.Entities.Shared;
 
-namespace Nebula.Domain.Entities;
+namespace Nebula.Domain.Entities.Networking;
 
 /// <summary>
 /// Represents a person in the networking contacts system.

@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Nebula.Domain.Entities;
+using Nebula.Domain.Entities.Networking;
 
 namespace Nebula.Architecture.Data;
 

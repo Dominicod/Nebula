@@ -1,3 +1,4 @@
+using FluentValidation;
 using Nebula.Contracts.Repositories;
 using Nebula.Contracts.Services.Networking;
 using Nebula.DataTransfer.Common;
@@ -7,9 +8,19 @@ using Nebula.Services.Mapping;
 namespace Nebula.Services.Networking;
 
 /// <inheritdoc />
-public sealed class PersonService(IUnitOfWork unitOfWork) : IPersonService
+public sealed class PersonService(
+    IUnitOfWork unitOfWork,
+    IValidator<CreatePersonCommand> createValidator,
+    IValidator<(Guid, UpdatePersonCommand)> updateValidator)
+    : IPersonService
 {
+    private readonly IValidator<CreatePersonCommand> _createValidator =
+        createValidator ?? throw new ArgumentNullException(nameof(createValidator));
+
     private readonly IUnitOfWork _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+
+    private readonly IValidator<(Guid, UpdatePersonCommand)> _updateValidator =
+        updateValidator ?? throw new ArgumentNullException(nameof(updateValidator));
 
     /// <inheritdoc />
     public async Task<TypedResult<PersonResponse>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
@@ -58,24 +69,17 @@ public sealed class PersonService(IUnitOfWork unitOfWork) : IPersonService
     {
         try
         {
-            // Check if a person with the same name already exists (business rule)
-            var existingPersons = await _unitOfWork.Persons
-                .FindAsync(i => i.FirstName == command.FirstName && i.LastName == command.LastName, cancellationToken);
-
-            if (existingPersons.Any())
+            var validationResult = await _createValidator.ValidateAsync(command, cancellationToken);
+            if (!validationResult.IsValid)
             {
-                return TypedResult<PersonResponse>.Result()
-                    .WithErrorMessage(
-                        $"A person with the name '{command.FirstName} {command.LastName}' already exists.");
+                var result = TypedResult<PersonResponse>.Result();
+                foreach (var error in validationResult.Errors) result.WithErrorMessage(error.ErrorMessage);
+                return result;
             }
 
-            // Create new person entity
             var person = PersonMapper.FromCreateCommand(command);
 
-            // Add to repository
             await _unitOfWork.Persons.AddAsync(person, cancellationToken);
-
-            // Save changes
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             var response = PersonMapper.ToResponse(person);
@@ -95,34 +99,17 @@ public sealed class PersonService(IUnitOfWork unitOfWork) : IPersonService
     {
         try
         {
-            // Get existing person
-            var existingPerson = await _unitOfWork.Persons.GetByIdAsync(id, cancellationToken);
-
-            if (existingPerson == null)
+            var validationResult = await _updateValidator.ValidateAsync((id, command), cancellationToken);
+            if (!validationResult.IsValid)
             {
-                return TypedResult<PersonResponse>.Result()
-                    .WithErrorMessage($"Person with ID '{id}' not found.");
+                var result = TypedResult<PersonResponse>.Result();
+                foreach (var error in validationResult.Errors) result.WithErrorMessage(error.ErrorMessage);
+                return result;
             }
 
-            // Check if another person with the same name exists (business rule)
-            var duplicatePersons = await _unitOfWork.Persons
-                .FindAsync(i => i.FirstName == command.FirstName && i.LastName == command.LastName, cancellationToken);
-
-            var hasDuplicate = duplicatePersons.Any(p => p.Id != id);
-            if (hasDuplicate)
-            {
-                return TypedResult<PersonResponse>.Result()
-                    .WithErrorMessage(
-                        $"Another person with the name '{command.FirstName} {command.LastName}' already exists.");
-            }
-
-            // Create updated person entity
             var updatedPerson = PersonMapper.FromUpdateCommand(id, command);
 
-            // Update in repository
             _unitOfWork.Persons.Update(updatedPerson);
-
-            // Save changes
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             var response = PersonMapper.ToResponse(updatedPerson);
@@ -141,7 +128,6 @@ public sealed class PersonService(IUnitOfWork unitOfWork) : IPersonService
     {
         try
         {
-            // Get existing person
             var person = await _unitOfWork.Persons.GetByIdAsync(id, cancellationToken);
 
             if (person == null)
@@ -150,10 +136,7 @@ public sealed class PersonService(IUnitOfWork unitOfWork) : IPersonService
                     .WithErrorMessage($"Person with ID '{id}' not found.");
             }
 
-            // Delete from repository
             _unitOfWork.Persons.Delete(person);
-
-            // Save changes
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             var response = PersonMapper.ToResponse(person);

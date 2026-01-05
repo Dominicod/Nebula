@@ -6,8 +6,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\Contracts\Nebula.Contracts.Common\Nebula.Contracts.Common.csproj"/>
-    </ItemGroup>
-
 </Project>

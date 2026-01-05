@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebula.DataTransfer", "Nebu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebula.Contracts.Repositories", "Contracts\Nebula.Contracts.Repositories\Nebula.Contracts.Repositories.csproj", "{3586308E-3954-4DC7-A5B1-C35E220D04CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebula.Contracts.Common", "Contracts\Nebula.Contracts.Common\Nebula.Contracts.Common.csproj", "{0097F89F-7A23-4CCF-92A2-77D38E6492C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,6 +112,18 @@ Global
 		{3586308E-3954-4DC7-A5B1-C35E220D04CA}.Release|x64.Build.0 = Release|Any CPU
 		{3586308E-3954-4DC7-A5B1-C35E220D04CA}.Release|x86.ActiveCfg = Release|Any CPU
 		{3586308E-3954-4DC7-A5B1-C35E220D04CA}.Release|x86.Build.0 = Release|Any CPU
+		{0097F89F-7A23-4CCF-92A2-77D38E6492C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0097F89F-7A23-4CCF-92A2-77D38E6492C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0097F89F-7A23-4CCF-92A2-77D38E6492C2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0097F89F-7A23-4CCF-92A2-77D38E6492C2}.Debug|x64.Build.0 = Debug|Any CPU
+		{0097F89F-7A23-4CCF-92A2-77D38E6492C2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0097F89F-7A23-4CCF-92A2-77D38E6492C2}.Debug|x86.Build.0 = Debug|Any CPU
+		{0097F89F-7A23-4CCF-92A2-77D38E6492C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0097F89F-7A23-4CCF-92A2-77D38E6492C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0097F89F-7A23-4CCF-92A2-77D38E6492C2}.Release|x64.ActiveCfg = Release|Any CPU
+		{0097F89F-7A23-4CCF-92A2-77D38E6492C2}.Release|x64.Build.0 = Release|Any CPU
+		{0097F89F-7A23-4CCF-92A2-77D38E6492C2}.Release|x86.ActiveCfg = Release|Any CPU
+		{0097F89F-7A23-4CCF-92A2-77D38E6492C2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -117,5 +131,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C6B48BD7-E4F6-46BE-BB93-EA3CF309715C} = {A7FF6961-D40F-4118-B75F-75FB71F10405}
 		{3586308E-3954-4DC7-A5B1-C35E220D04CA} = {A7FF6961-D40F-4118-B75F-75FB71F10405}
+		{0097F89F-7A23-4CCF-92A2-77D38E6492C2} = {A7FF6961-D40F-4118-B75F-75FB71F10405}
 	EndGlobalSection
 EndGlobal

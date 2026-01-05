@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.1"/>
         <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.1"/>
     </ItemGroup>
@@ -14,6 +15,7 @@
     <ItemGroup>
         <ProjectReference Include="..\Nebula.Domain\Nebula.Domain.csproj"/>
         <ProjectReference Include="..\Nebula.Services\Nebula.Services.csproj"/>
+        <ProjectReference Include="..\Nebula.DataTransfer\Nebula.DataTransfer.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -29,7 +29,7 @@ public static partial class DependencyInjection
         ArgumentNullException.ThrowIfNull(dbConfig);
 
         services.AddDbContext<NebulaDbContext>(options =>
-            options.UseSqlServer(dbConfig.ConnectionString));
+            options.UseAzureSql(dbConfig.ConnectionString));
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 

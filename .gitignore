@@ -211,4 +211,4 @@ FodyWeavers.xsd
 *.msp
 *.sln.iml
 .idea
-*.claude/
+*.claude/settings.local.json

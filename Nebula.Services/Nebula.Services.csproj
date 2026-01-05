@@ -11,7 +11,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Contracts\Nebula.Contracts.Services\Nebula.Contracts.Services.csproj" />
+        <ProjectReference Include="..\Contracts\Nebula.Contracts.Services\Nebula.Contracts.Services.csproj"/>
+        <ProjectReference Include="..\Contracts\Nebula.Contracts.Repositories\Nebula.Contracts.Repositories.csproj"/>
     </ItemGroup>
 
 </Project>

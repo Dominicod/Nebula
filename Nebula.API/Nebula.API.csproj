@@ -8,11 +8,11 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1"/>
-        <PackageReference Include="Asp.Versioning.Http" Version="8.1.1" />
+        <PackageReference Include="Asp.Versioning.Http" Version="8.1.1"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Nebula.Infrastructure\Nebula.Infrastructure.csproj" />
+        <ProjectReference Include="..\Nebula.Infrastructure\Nebula.Infrastructure.csproj"/>
     </ItemGroup>
 
 </Project>

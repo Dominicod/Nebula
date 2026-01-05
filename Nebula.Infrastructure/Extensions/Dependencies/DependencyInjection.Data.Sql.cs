@@ -1,18 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Nebula.Contracts.Repositories;
+using Nebula.Contracts.Repositories.Networking;
 using Nebula.Infrastructure.Configuration;
 using Nebula.Infrastructure.Data;
+using Nebula.Infrastructure.Data.Repositories.Networking;
 
 namespace Nebula.Infrastructure.Extensions.Dependencies;
 
 /// <summary>
-/// Extension methods for registering SQL data dependencies.
+///     Extension methods for registering SQL data dependencies.
 /// </summary>
 public static partial class DependencyInjection
 {
     /// <summary>
-    /// Adds the Nebula SQL Server database context and related services.
+    ///     Adds the Nebula SQL Server database context and related services.
     /// </summary>
     /// <param name="services">The service collection.</param>
     /// <param name="configuration">The application configuration.</param>
@@ -27,5 +30,10 @@ public static partial class DependencyInjection
 
         services.AddDbContext<NebulaDbContext>(options =>
             options.UseSqlServer(dbConfig.ConnectionString));
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        // Repositories
+        services.AddScoped<IPersonRepository, PersonRepository>();
     }
 }

@@ -5,7 +5,7 @@ using Nebula.Domain.Entities.Shared;
 namespace Nebula.Infrastructure.Data.Entities.Configuration.Shared;
 
 /// <summary>
-/// Base EF Core configuration for entities inheriting from <see cref="BaseEntity{TId}"/>.
+///     Base EF Core configuration for entities inheriting from <see cref="BaseEntity{TId}" />.
 /// </summary>
 /// <typeparam name="TEntity">The entity type.</typeparam>
 /// <typeparam name="TId">The type of the entity identifier.</typeparam>
@@ -27,7 +27,7 @@ internal abstract class BaseEntityConfiguration<TEntity, TId> : IEntityTypeConfi
     }
 
     /// <summary>
-    /// Configures the entity-specific properties. Called after base configuration is applied.
+    ///     Configures the entity-specific properties. Called after base configuration is applied.
     /// </summary>
     /// <param name="builder">The entity type builder.</param>
     protected abstract void ConfigureEntity(EntityTypeBuilder<TEntity> builder);

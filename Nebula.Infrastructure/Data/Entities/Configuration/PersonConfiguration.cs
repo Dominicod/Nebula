@@ -6,7 +6,7 @@ using Nebula.Infrastructure.Data.Entities.Configuration.Shared;
 namespace Nebula.Infrastructure.Data.Entities.Configuration;
 
 /// <summary>
-/// EF Core configuration for the <see cref="Person"/> entity.
+///     EF Core configuration for the <see cref="Person" /> entity.
 /// </summary>
 internal sealed class PersonConfiguration : BaseEntityConfiguration<Person, Guid>
 {

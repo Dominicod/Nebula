@@ -3,14 +3,16 @@ using Nebula.Domain.Entities.Networking;
 
 namespace Nebula.Infrastructure.Data;
 
-/// <inheritdoc/>
+/// <inheritdoc />
 internal sealed class NebulaDbContext : DbContext
 {
-    /// <inheritdoc/>
-    public NebulaDbContext(DbContextOptions<NebulaDbContext> options) : base(options) { }
+    /// <inheritdoc />
+    public NebulaDbContext(DbContextOptions<NebulaDbContext> options) : base(options)
+    {
+    }
 
     /// <summary>
-    /// Gets or sets the People DbSet.
+    ///     Gets or sets the People DbSet.
     /// </summary>
     public DbSet<Person> People { get; set; }
 

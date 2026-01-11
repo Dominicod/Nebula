@@ -1,5 +1,4 @@
 using Asp.Versioning;
-using Nebula.API.Routes.Networking;
 using Nebula.Infrastructure.Extensions.Dependencies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,13 +21,5 @@ if (app.Environment.IsDevelopment()) app.MapOpenApi();
 
 // Using
 app.UseHttpsRedirection();
-
-// Routes
-var apiVersionSet = app.NewApiVersionSet()
-    .HasApiVersion(new ApiVersion(1, 0))
-    .ReportApiVersions()
-    .Build();
-app.MapPersonRoutes()
-    .WithApiVersionSet(apiVersionSet);
 
 app.Run();

@@ -14,8 +14,8 @@ public interface IPersonService
     /// </summary>
     /// <param name="id">The person's unique identifier.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
-    /// <returns>TypedResult containing the person response if found.</returns>
-    Task<TypedResult<PersonResponse>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    /// <returns>The person response if found, null otherwise.</returns>
+    Task<PersonResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
     /// <summary>
     ///     Gets all persons.
@@ -31,16 +31,6 @@ public interface IPersonService
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>TypedResult containing the created person response.</returns>
     Task<TypedResult<PersonResponse>> CreateAsync(CreatePersonCommand command,
-        CancellationToken cancellationToken = default);
-
-    /// <summary>
-    ///     Updates an existing person.
-    /// </summary>
-    /// <param name="id">The person's unique identifier.</param>
-    /// <param name="command">The update person command.</param>
-    /// <param name="cancellationToken">Cancellation token.</param>
-    /// <returns>TypedResult containing the updated person response if found.</returns>
-    Task<TypedResult<PersonResponse>> UpdateAsync(Guid id, UpdatePersonCommand command,
         CancellationToken cancellationToken = default);
 
     /// <summary>

@@ -16,6 +16,11 @@ internal sealed class NebulaDbContext : DbContext
     /// </summary>
     public DbSet<Person> People { get; set; }
 
+    /// <summary>
+    ///     Gets or sets the Tasks DbSet.
+    /// </summary>
+    public DbSet<Domain.Entities.Tasks.Task> Tasks { get; set; }
+
     /// <inheritdoc />
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

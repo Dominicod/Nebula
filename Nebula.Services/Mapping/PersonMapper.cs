@@ -56,22 +56,4 @@ internal static class PersonMapper
             LastName = command.LastName
         };
     }
-
-    /// <summary>
-    ///     Creates a new Person entity from UpdatePersonCommand with the existing ID.
-    ///     Note: Since Person uses init-only properties, we create a new instance.
-    ///     EF Core will track and update the existing entity.
-    /// </summary>
-    /// <param name="existingId">The existing Person entity ID.</param>
-    /// <param name="command">The UpdatePersonCommand.</param>
-    /// <returns>A new Person entity with updated values.</returns>
-    public static Person FromUpdateCommand(Guid existingId, UpdatePersonCommand command)
-    {
-        return new Person
-        {
-            Id = existingId,
-            FirstName = command.FirstName,
-            LastName = command.LastName
-        };
-    }
 }

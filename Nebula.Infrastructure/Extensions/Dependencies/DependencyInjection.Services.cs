@@ -29,9 +29,7 @@ public static partial class DependencyInjection
 
         // Register validators
         services.AddScoped<IValidator<CreatePersonCommand>, CreatePersonCommandValidator>();
-        services.AddScoped<IValidator<(Guid, UpdatePersonCommand)>, UpdatePersonCommandValidator>();
         services.AddScoped<IValidator<CreateTaskCommand>, CreateTaskCommandValidator>();
-        services.AddScoped<IValidator<(Guid, UpdateTaskCommand)>, UpdateTaskCommandValidator>();
 
         // Add FluentValidation
         services.AddValidatorsFromAssemblyContaining<CreatePersonCommandValidator>();

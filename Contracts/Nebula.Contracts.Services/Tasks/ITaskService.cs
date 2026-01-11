@@ -14,8 +14,8 @@ public interface ITaskService
     /// </summary>
     /// <param name="id">The task's unique identifier.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
-    /// <returns>TypedResult containing the task response if found.</returns>
-    Task<TypedResult<TaskResponse>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    /// <returns>The task response if found, null otherwise.</returns>
+    Task<TaskResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
     /// <summary>
     ///     Gets all tasks.
@@ -39,16 +39,6 @@ public interface ITaskService
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>TypedResult containing the created task response.</returns>
     Task<TypedResult<TaskResponse>> CreateAsync(CreateTaskCommand command,
-        CancellationToken cancellationToken = default);
-
-    /// <summary>
-    ///     Updates an existing task.
-    /// </summary>
-    /// <param name="id">The task's unique identifier.</param>
-    /// <param name="command">The update task command.</param>
-    /// <param name="cancellationToken">Cancellation token.</param>
-    /// <returns>TypedResult containing the updated task response if found.</returns>
-    Task<TypedResult<TaskResponse>> UpdateAsync(Guid id, UpdateTaskCommand command,
         CancellationToken cancellationToken = default);
 
     /// <summary>

@@ -10,8 +10,7 @@ namespace Nebula.Services.Networking;
 /// <inheritdoc />
 public sealed class PersonService(
     IUnitOfWork unitOfWork,
-    IValidator<CreatePersonCommand> createValidator,
-    IValidator<(Guid, UpdatePersonCommand)> updateValidator)
+    IValidator<CreatePersonCommand> createValidator)
     : IPersonService
 {
     private readonly IValidator<CreatePersonCommand> _createValidator =
@@ -19,31 +18,17 @@ public sealed class PersonService(
 
     private readonly IUnitOfWork _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
 
-    private readonly IValidator<(Guid, UpdatePersonCommand)> _updateValidator =
-        updateValidator ?? throw new ArgumentNullException(nameof(updateValidator));
-
     /// <inheritdoc />
-    public async Task<TypedResult<PersonResponse>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<PersonResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        try
-        {
-            var person = await _unitOfWork.Persons.GetByIdAsync(id, cancellationToken);
+        var person = await _unitOfWork.Persons.GetByIdAsync(id, cancellationToken);
 
-            if (person == null)
-            {
-                return TypedResult<PersonResponse>.Result()
-                    .WithErrorMessage($"Person with ID '{id}' not found.");
-            }
-
-            var response = PersonMapper.ToResponse(person);
-            return TypedResult<PersonResponse>.Result(response);
-        }
-        catch (Exception ex)
+        if (person == null)
         {
-            return TypedResult<PersonResponse>.Result()
-                .WithErrorMessage($"An error occurred while retrieving the person: {ex.Message}")
-                .WithException(ex);
+            return null;
         }
+
+        return PersonMapper.ToResponse(person);
     }
 
     /// <inheritdoc />
@@ -89,36 +74,6 @@ public sealed class PersonService(
         {
             return TypedResult<PersonResponse>.Result()
                 .WithErrorMessage($"An error occurred while creating the person: {ex.Message}")
-                .WithException(ex);
-        }
-    }
-
-    /// <inheritdoc />
-    public async Task<TypedResult<PersonResponse>> UpdateAsync(Guid id, UpdatePersonCommand command,
-        CancellationToken cancellationToken = default)
-    {
-        try
-        {
-            var validationResult = await _updateValidator.ValidateAsync((id, command), cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                var result = TypedResult<PersonResponse>.Result();
-                foreach (var error in validationResult.Errors) result.WithErrorMessage(error.ErrorMessage);
-                return result;
-            }
-
-            var updatedPerson = PersonMapper.FromUpdateCommand(id, command);
-
-            _unitOfWork.Persons.Update(updatedPerson);
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
-
-            var response = PersonMapper.ToResponse(updatedPerson);
-            return TypedResult<PersonResponse>.Result(response);
-        }
-        catch (Exception ex)
-        {
-            return TypedResult<PersonResponse>.Result()
-                .WithErrorMessage($"An error occurred while updating the person: {ex.Message}")
                 .WithException(ex);
         }
     }

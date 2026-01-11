@@ -56,24 +56,4 @@ internal static class TaskMapper
             CompletedAt = null
         };
     }
-
-    /// <summary>
-    ///     Creates a new Task entity from UpdateTaskCommand with the existing ID.
-    ///     Note: Since Task uses init-only properties for Text, we create a new instance.
-    ///     EF Core will track and update the existing entity.
-    /// </summary>
-    /// <param name="existingId">The existing Task entity ID.</param>
-    /// <param name="command">The UpdateTaskCommand.</param>
-    /// <param name="existingTask">The existing task to preserve IsCompleted and CompletedAt.</param>
-    /// <returns>A new Task entity with updated values.</returns>
-    public static Domain.Entities.Tasks.Task FromUpdateCommand(Guid existingId, UpdateTaskCommand command, Domain.Entities.Tasks.Task existingTask)
-    {
-        return new Domain.Entities.Tasks.Task
-        {
-            Id = existingId,
-            Text = command.Text,
-            IsCompleted = existingTask.IsCompleted,
-            CompletedAt = existingTask.CompletedAt
-        };
-    }
 }

@@ -10,8 +10,7 @@ namespace Nebula.Services.Tasks;
 /// <inheritdoc />
 public sealed class TaskService(
     IUnitOfWork unitOfWork,
-    IValidator<CreateTaskCommand> createValidator,
-    IValidator<(Guid, UpdateTaskCommand)> updateValidator)
+    IValidator<CreateTaskCommand> createValidator)
     : ITaskService
 {
     private readonly IValidator<CreateTaskCommand> _createValidator =
@@ -19,31 +18,17 @@ public sealed class TaskService(
 
     private readonly IUnitOfWork _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
 
-    private readonly IValidator<(Guid, UpdateTaskCommand)> _updateValidator =
-        updateValidator ?? throw new ArgumentNullException(nameof(updateValidator));
-
     /// <inheritdoc />
-    public async Task<TypedResult<TaskResponse>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<TaskResponse?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        try
-        {
-            var task = await _unitOfWork.Tasks.GetByIdAsync(id, cancellationToken);
+        var task = await _unitOfWork.Tasks.GetByIdAsync(id, cancellationToken);
 
-            if (task == null)
-            {
-                return TypedResult<TaskResponse>.Result()
-                    .WithErrorMessage($"Task with ID '{id}' not found.");
-            }
-
-            var response = TaskMapper.ToResponse(task);
-            return TypedResult<TaskResponse>.Result(response);
-        }
-        catch (Exception ex)
+        if (task == null)
         {
-            return TypedResult<TaskResponse>.Result()
-                .WithErrorMessage($"An error occurred while retrieving the task: {ex.Message}")
-                .WithException(ex);
+            return null;
         }
+
+        return TaskMapper.ToResponse(task);
     }
 
     /// <inheritdoc />
@@ -112,43 +97,6 @@ public sealed class TaskService(
         {
             return TypedResult<TaskResponse>.Result()
                 .WithErrorMessage($"An error occurred while creating the task: {ex.Message}")
-                .WithException(ex);
-        }
-    }
-
-    /// <inheritdoc />
-    public async Task<TypedResult<TaskResponse>> UpdateAsync(Guid id, UpdateTaskCommand command,
-        CancellationToken cancellationToken = default)
-    {
-        try
-        {
-            var validationResult = await _updateValidator.ValidateAsync((id, command), cancellationToken);
-            if (!validationResult.IsValid)
-            {
-                var result = TypedResult<TaskResponse>.Result();
-                foreach (var error in validationResult.Errors) result.WithErrorMessage(error.ErrorMessage);
-                return result;
-            }
-
-            var existingTask = await _unitOfWork.Tasks.GetByIdAsync(id, cancellationToken);
-            if (existingTask == null)
-            {
-                return TypedResult<TaskResponse>.Result()
-                    .WithErrorMessage($"Task with ID '{id}' not found.");
-            }
-
-            var updatedTask = TaskMapper.FromUpdateCommand(id, command, existingTask);
-
-            _unitOfWork.Tasks.Update(updatedTask);
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
-
-            var response = TaskMapper.ToResponse(updatedTask);
-            return TypedResult<TaskResponse>.Result(response);
-        }
-        catch (Exception ex)
-        {
-            return TypedResult<TaskResponse>.Result()
-                .WithErrorMessage($"An error occurred while updating the task: {ex.Message}")
                 .WithException(ex);
         }
     }

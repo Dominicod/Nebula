@@ -1,18 +1,18 @@
 using FluentValidation;
 using Nebula.Contracts.Repositories;
-using Nebula.DataTransfer.Contracts.DailyTasks;
+using Nebula.DataTransfer.Contracts.Tasks;
 
-namespace Nebula.Services.Validators.DailyTasks;
+namespace Nebula.Services.Validators.Tasks;
 
 /// <summary>
-///     Validator for UpdateDailyTaskCommand.
+///     Validator for UpdateTaskCommand.
 ///     Validates the command along with the task ID being updated.
 /// </summary>
-public sealed class UpdateDailyTaskCommandValidator : AbstractValidator<(Guid Id, UpdateDailyTaskCommand Command)>
+public sealed class UpdateTaskCommandValidator : AbstractValidator<(Guid Id, UpdateTaskCommand Command)>
 {
     private readonly IUnitOfWork _unitOfWork;
 
-    public UpdateDailyTaskCommandValidator(IUnitOfWork unitOfWork)
+    public UpdateTaskCommandValidator(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
 
@@ -34,6 +34,6 @@ public sealed class UpdateDailyTaskCommandValidator : AbstractValidator<(Guid Id
     /// </summary>
     private async Task<bool> TaskExists(Guid id, CancellationToken cancellationToken)
     {
-        return await _unitOfWork.DailyTasks.ExistsAsync(id, cancellationToken);
+        return await _unitOfWork.Tasks.ExistsAsync(id, cancellationToken);
     }
 }

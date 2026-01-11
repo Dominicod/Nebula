@@ -1,77 +1,77 @@
 using Nebula.DataTransfer.Common;
-using Nebula.DataTransfer.Contracts.DailyTasks;
+using Nebula.DataTransfer.Contracts.Tasks;
 
-namespace Nebula.Contracts.Services.DailyTasks;
+namespace Nebula.Contracts.Services.Tasks;
 
 /// <summary>
-///     Service interface for DailyTask business operations.
+///     Service interface for Task business operations.
 ///     Works with API contracts (DTOs) and never exposes domain entities.
 /// </summary>
-public interface IDailyTaskService
+public interface ITaskService
 {
     /// <summary>
-    ///     Gets a daily task by its unique identifier.
+    ///     Gets a task by its unique identifier.
     /// </summary>
     /// <param name="id">The task's unique identifier.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>TypedResult containing the task response if found.</returns>
-    Task<TypedResult<DailyTaskResponse>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<TypedResult<TaskResponse>> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
     /// <summary>
-    ///     Gets all daily tasks.
+    ///     Gets all tasks.
     /// </summary>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>TypedResult containing the list of all tasks.</returns>
-    Task<TypedResult<DailyTaskListResponse>> GetAllAsync(CancellationToken cancellationToken = default);
+    Task<TypedResult<TaskListResponse>> GetAllAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
-    ///     Gets daily tasks for a specific date.
+    ///     Gets tasks for a specific date.
     /// </summary>
     /// <param name="date">The date to filter tasks by (uses CreatedAt).</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>TypedResult containing the list of tasks for the date.</returns>
-    Task<TypedResult<DailyTaskListResponse>> GetByDateAsync(DateOnly date, CancellationToken cancellationToken = default);
+    Task<TypedResult<TaskListResponse>> GetByDateAsync(DateOnly date, CancellationToken cancellationToken = default);
 
     /// <summary>
-    ///     Creates a new daily task.
+    ///     Creates a new task.
     /// </summary>
     /// <param name="command">The create task command.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>TypedResult containing the created task response.</returns>
-    Task<TypedResult<DailyTaskResponse>> CreateAsync(CreateDailyTaskCommand command,
+    Task<TypedResult<TaskResponse>> CreateAsync(CreateTaskCommand command,
         CancellationToken cancellationToken = default);
 
     /// <summary>
-    ///     Updates an existing daily task.
+    ///     Updates an existing task.
     /// </summary>
     /// <param name="id">The task's unique identifier.</param>
     /// <param name="command">The update task command.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>TypedResult containing the updated task response if found.</returns>
-    Task<TypedResult<DailyTaskResponse>> UpdateAsync(Guid id, UpdateDailyTaskCommand command,
+    Task<TypedResult<TaskResponse>> UpdateAsync(Guid id, UpdateTaskCommand command,
         CancellationToken cancellationToken = default);
 
     /// <summary>
-    ///     Deletes a daily task by its unique identifier.
+    ///     Deletes a task by its unique identifier.
     /// </summary>
     /// <param name="id">The task's unique identifier.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>TypedResult indicating success or failure.</returns>
-    Task<TypedResult<DailyTaskResponse>> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<TypedResult<TaskResponse>> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 
     /// <summary>
-    ///     Marks a daily task as completed.
+    ///     Marks a task as completed.
     /// </summary>
     /// <param name="id">The task's unique identifier.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>TypedResult containing the updated task response.</returns>
-    Task<TypedResult<DailyTaskResponse>> MarkAsCompletedAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<TypedResult<TaskResponse>> MarkAsCompletedAsync(Guid id, CancellationToken cancellationToken = default);
 
     /// <summary>
-    ///     Marks a daily task as incomplete.
+    ///     Marks a task as incomplete.
     /// </summary>
     /// <param name="id">The task's unique identifier.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>TypedResult containing the updated task response.</returns>
-    Task<TypedResult<DailyTaskResponse>> MarkAsIncompleteAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<TypedResult<TaskResponse>> MarkAsIncompleteAsync(Guid id, CancellationToken cancellationToken = default);
 }

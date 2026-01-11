@@ -1,9 +1,9 @@
-namespace Nebula.DataTransfer.Contracts.DailyTasks;
+namespace Nebula.DataTransfer.Contracts.Tasks;
 
 /// <summary>
-///     Response contract representing a daily task.
+///     Response contract representing a task.
 /// </summary>
-public sealed record DailyTaskResponse : IResponse
+public sealed record TaskResponse : IResponse
 {
     /// <summary>
     ///     Gets the unique identifier of the task.

@@ -1,19 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Nebula.Domain.Entities.DailyTasks;
 using Nebula.Infrastructure.Data.Entities.Configuration.Shared;
 
 namespace Nebula.Infrastructure.Data.Entities.Configuration;
 
 /// <summary>
-///     EF Core configuration for the <see cref="DailyTask" /> entity.
+///     EF Core configuration for the <see cref="Domain.Entities.Tasks.Task" /> entity.
 /// </summary>
-internal sealed class DailyTaskConfiguration : BaseEntityConfiguration<DailyTask, Guid>
+internal sealed class TaskConfiguration : BaseEntityConfiguration<Domain.Entities.Tasks.Task, Guid>
 {
     /// <inheritdoc />
-    protected override void ConfigureEntity(EntityTypeBuilder<DailyTask> builder)
+    protected override void ConfigureEntity(EntityTypeBuilder<Domain.Entities.Tasks.Task> builder)
     {
-        builder.ToTable("DailyTasks");
+        builder.ToTable("Tasks");
 
         builder.Property(t => t.Text)
             .IsRequired()

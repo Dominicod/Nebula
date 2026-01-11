@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Nebula.DataTransfer.Contracts.DailyTasks;
+namespace Nebula.DataTransfer.Contracts.Tasks;
 
 /// <summary>
-///     Request contract for creating a new daily task.
+///     Request contract for creating a new task.
 /// </summary>
-public sealed record CreateDailyTaskCommand : ICommand
+public sealed record CreateTaskCommand : ICommand
 {
     /// <summary>
     ///     Gets the text content of the task.

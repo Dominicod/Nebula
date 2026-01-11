@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Nebula.Domain.Entities.DailyTasks;
 using Nebula.Domain.Entities.Networking;
 
 namespace Nebula.Infrastructure.Data;
@@ -18,9 +17,9 @@ internal sealed class NebulaDbContext : DbContext
     public DbSet<Person> People { get; set; }
 
     /// <summary>
-    ///     Gets or sets the DailyTasks DbSet.
+    ///     Gets or sets the Tasks DbSet.
     /// </summary>
-    public DbSet<DailyTask> DailyTasks { get; set; }
+    public DbSet<Domain.Entities.Tasks.Task> Tasks { get; set; }
 
     /// <inheritdoc />
     protected override void OnModelCreating(ModelBuilder modelBuilder)

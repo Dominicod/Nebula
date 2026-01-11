@@ -1,11 +1,11 @@
 using Nebula.Domain.Entities.Shared;
 
-namespace Nebula.Domain.Entities.DailyTasks;
+namespace Nebula.Domain.Entities.Tasks;
 
 /// <summary>
-///     Represents a daily task in the task tracking system.
+///     Represents a task in the task tracking system.
 /// </summary>
-public class DailyTask : BaseEntity<Guid>
+public class Task : BaseEntity<Guid>
 {
     /// <summary>
     ///     The text content of the task.

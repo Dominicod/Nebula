@@ -3,7 +3,7 @@ using Nebula.Contracts.Repositories;
 using Nebula.Contracts.Services.Networking;
 using Nebula.DataTransfer.Common;
 using Nebula.DataTransfer.Contracts.Networking;
-using Nebula.Services.Mapping;
+using Nebula.Services.Common.Mapping;
 
 namespace Nebula.Services.Networking;
 

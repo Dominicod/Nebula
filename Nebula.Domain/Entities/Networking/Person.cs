@@ -1,4 +1,4 @@
-using Nebula.Domain.Entities.Shared;
+using Nebula.Domain.Entities.Common;
 
 namespace Nebula.Domain.Entities.Networking;
 

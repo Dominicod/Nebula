@@ -1,7 +1,7 @@
 using Nebula.DataTransfer.Contracts.Networking;
 using Nebula.Domain.Entities.Networking;
 
-namespace Nebula.Services.Mapping;
+namespace Nebula.Services.Common.Mapping;
 
 /// <summary>
 ///     Mapper for Person entity to/from DTOs.

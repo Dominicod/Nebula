@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Nebula.Domain.Entities.Shared;
+using Nebula.Domain.Entities.Common;
 
 namespace Nebula.Infrastructure.Data.Entities.Configuration.Shared;
 

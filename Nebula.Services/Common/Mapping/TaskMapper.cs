@@ -1,7 +1,7 @@
 using Nebula.DataTransfer.Contracts.Tasks;
 using Task = Nebula.Domain.Entities.Tasks.Task;
 
-namespace Nebula.Services.Mapping;
+namespace Nebula.Services.Common.Mapping;
 
 /// <summary>
 ///     Mapper for Task entity to/from DTOs.

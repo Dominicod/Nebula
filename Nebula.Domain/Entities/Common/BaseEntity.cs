@@ -1,4 +1,4 @@
-namespace Nebula.Domain.Entities.Shared;
+namespace Nebula.Domain.Entities.Common;
 
 /// <summary>
 ///     Base entity providing common properties for all domain entities.

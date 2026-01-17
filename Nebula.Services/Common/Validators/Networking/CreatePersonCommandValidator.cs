@@ -2,7 +2,7 @@ using FluentValidation;
 using Nebula.Contracts.Repositories;
 using Nebula.DataTransfer.Contracts.Networking;
 
-namespace Nebula.Services.Validators.Networking;
+namespace Nebula.Services.Common.Validators.Networking;
 
 /// <summary>
 ///     Validator for CreatePersonCommand.

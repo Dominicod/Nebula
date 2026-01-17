@@ -4,10 +4,10 @@ using Nebula.Contracts.Services.Networking;
 using Nebula.Contracts.Services.Tasks;
 using Nebula.DataTransfer.Contracts.Networking;
 using Nebula.DataTransfer.Contracts.Tasks;
+using Nebula.Services.Common.Validators.Networking;
+using Nebula.Services.Common.Validators.Tasks;
 using Nebula.Services.Networking;
 using Nebula.Services.Tasks;
-using Nebula.Services.Validators.Networking;
-using Nebula.Services.Validators.Tasks;
 
 namespace Nebula.Infrastructure.Extensions.Dependencies;
 

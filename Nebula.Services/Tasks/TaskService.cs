@@ -3,7 +3,7 @@ using Nebula.Contracts.Repositories;
 using Nebula.Contracts.Services.Tasks;
 using Nebula.DataTransfer.Common;
 using Nebula.DataTransfer.Contracts.Tasks;
-using Nebula.Services.Mapping;
+using Nebula.Services.Common.Mapping;
 
 namespace Nebula.Services.Tasks;
 

@@ -1,7 +1,7 @@
 using FluentValidation;
 using Nebula.DataTransfer.Contracts.Tasks;
 
-namespace Nebula.Services.Validators.Tasks;
+namespace Nebula.Services.Common.Validators.Tasks;
 
 /// <summary>
 ///     Validator for CreateTaskCommand.

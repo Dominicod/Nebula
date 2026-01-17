@@ -16,4 +16,8 @@
         <ProjectReference Include="..\Contracts\Nebula.Contracts.Repositories\Nebula.Contracts.Repositories.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Common\" />
+    </ItemGroup>
+
 </Project>

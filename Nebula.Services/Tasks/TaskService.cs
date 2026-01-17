@@ -23,10 +23,7 @@ public sealed class TaskService(
     {
         var task = await _unitOfWork.Tasks.GetByIdAsync(id, cancellationToken);
 
-        if (task == null)
-        {
-            return null;
-        }
+        if (task == null) return null;
 
         return TaskMapper.ToResponse(task);
     }
@@ -49,7 +46,8 @@ public sealed class TaskService(
     }
 
     /// <inheritdoc />
-    public async Task<TypedResult<TaskListResponse>> GetByDateAsync(DateOnly date, CancellationToken cancellationToken = default)
+    public async Task<TypedResult<TaskListResponse>> GetByDateAsync(DateOnly date,
+        CancellationToken cancellationToken = default)
     {
         try
         {
@@ -129,7 +127,8 @@ public sealed class TaskService(
     }
 
     /// <inheritdoc />
-    public async Task<TypedResult<TaskResponse>> MarkAsCompletedAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<TypedResult<TaskResponse>> MarkAsCompletedAsync(Guid id,
+        CancellationToken cancellationToken = default)
     {
         try
         {
@@ -159,7 +158,8 @@ public sealed class TaskService(
     }
 
     /// <inheritdoc />
-    public async Task<TypedResult<TaskResponse>> MarkAsIncompleteAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<TypedResult<TaskResponse>> MarkAsIncompleteAsync(Guid id,
+        CancellationToken cancellationToken = default)
     {
         try
         {

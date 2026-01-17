@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Nebula.Domain.Entities.Networking;
+using Task = Nebula.Domain.Entities.Tasks.Task;
 
 namespace Nebula.Infrastructure.Data;
 
@@ -19,7 +20,7 @@ internal sealed class NebulaDbContext : DbContext
     /// <summary>
     ///     Gets or sets the Tasks DbSet.
     /// </summary>
-    public DbSet<Domain.Entities.Tasks.Task> Tasks { get; set; }
+    public DbSet<Task> Tasks { get; set; }
 
     /// <inheritdoc />
     protected override void OnModelCreating(ModelBuilder modelBuilder)

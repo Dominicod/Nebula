@@ -23,10 +23,7 @@ public sealed class PersonService(
     {
         var person = await _unitOfWork.Persons.GetByIdAsync(id, cancellationToken);
 
-        if (person == null)
-        {
-            return null;
-        }
+        if (person == null) return null;
 
         return PersonMapper.ToResponse(person);
     }

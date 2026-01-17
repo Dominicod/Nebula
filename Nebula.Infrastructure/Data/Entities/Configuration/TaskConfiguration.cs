@@ -1,16 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Nebula.Infrastructure.Data.Entities.Configuration.Shared;
+using Task = Nebula.Domain.Entities.Tasks.Task;
 
 namespace Nebula.Infrastructure.Data.Entities.Configuration;
 
 /// <summary>
 ///     EF Core configuration for the <see cref="Domain.Entities.Tasks.Task" /> entity.
 /// </summary>
-internal sealed class TaskConfiguration : BaseEntityConfiguration<Domain.Entities.Tasks.Task, Guid>
+internal sealed class TaskConfiguration : BaseEntityConfiguration<Task, Guid>
 {
     /// <inheritdoc />
-    protected override void ConfigureEntity(EntityTypeBuilder<Domain.Entities.Tasks.Task> builder)
+    protected override void ConfigureEntity(EntityTypeBuilder<Task> builder)
     {
         builder.ToTable("Tasks");
 

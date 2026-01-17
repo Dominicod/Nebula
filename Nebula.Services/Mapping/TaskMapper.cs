@@ -1,4 +1,5 @@
 using Nebula.DataTransfer.Contracts.Tasks;
+using Task = Nebula.Domain.Entities.Tasks.Task;
 
 namespace Nebula.Services.Mapping;
 
@@ -12,7 +13,7 @@ internal static class TaskMapper
     /// </summary>
     /// <param name="task">The Task entity.</param>
     /// <returns>TaskResponse DTO.</returns>
-    public static TaskResponse ToResponse(Domain.Entities.Tasks.Task task)
+    public static TaskResponse ToResponse(Task task)
     {
         return new TaskResponse
         {
@@ -30,7 +31,7 @@ internal static class TaskMapper
     /// </summary>
     /// <param name="tasks">The collection of Task entities.</param>
     /// <returns>TaskListResponse DTO.</returns>
-    public static TaskListResponse ToListResponse(IEnumerable<Domain.Entities.Tasks.Task> tasks)
+    public static TaskListResponse ToListResponse(IEnumerable<Task> tasks)
     {
         var taskList = tasks.ToList();
         return new TaskListResponse
@@ -46,9 +47,9 @@ internal static class TaskMapper
     /// </summary>
     /// <param name="command">The CreateTaskCommand.</param>
     /// <returns>A new Task entity.</returns>
-    public static Domain.Entities.Tasks.Task FromCreateCommand(CreateTaskCommand command)
+    public static Task FromCreateCommand(CreateTaskCommand command)
     {
-        return new Domain.Entities.Tasks.Task
+        return new Task
         {
             Id = Guid.NewGuid(),
             Text = command.Text,

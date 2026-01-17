@@ -1,5 +1,5 @@
 using Nebula.Contracts.Repositories.Tasks;
-using Nebula.Domain.Entities.Tasks;
+using Task = Nebula.Domain.Entities.Tasks.Task;
 
 namespace Nebula.Infrastructure.Data.Repositories.Tasks;
 

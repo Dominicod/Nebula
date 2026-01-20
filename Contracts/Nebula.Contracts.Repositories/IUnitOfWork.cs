@@ -1,5 +1,5 @@
+using Nebula.Contracts.Repositories.ActionItems;
 using Nebula.Contracts.Repositories.Networking;
-using Nebula.Contracts.Repositories.Tasks;
 
 namespace Nebula.Contracts.Repositories;
 
@@ -14,9 +14,9 @@ public interface IUnitOfWork : IDisposable
     IPersonRepository Persons { get; }
 
     /// <summary>
-    ///     Gets the Task repository.
+    ///     Gets the ActionItem repository.
     /// </summary>
-    ITaskRepository Tasks { get; }
+    IActionItemRepository ActionItems { get; }
 
     /// <summary>
     ///     Saves all changes made in this unit of work to the database.

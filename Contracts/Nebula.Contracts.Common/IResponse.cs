@@ -1,4 +1,4 @@
-namespace Nebula.DataTransfer.Contracts;
+namespace Nebula.Contracts.Common;
 
 /// <summary>
 ///     Marker interface for all response contracts.

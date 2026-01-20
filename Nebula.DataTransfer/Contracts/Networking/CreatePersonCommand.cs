@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Nebula.Contracts.Common;
 
 namespace Nebula.DataTransfer.Contracts.Networking;
 

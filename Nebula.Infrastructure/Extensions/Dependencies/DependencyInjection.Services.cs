@@ -1,13 +1,13 @@
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using Nebula.Contracts.Services.ActionItems;
 using Nebula.Contracts.Services.Networking;
-using Nebula.Contracts.Services.Tasks;
+using Nebula.DataTransfer.Contracts.ActionItems;
 using Nebula.DataTransfer.Contracts.Networking;
-using Nebula.DataTransfer.Contracts.Tasks;
+using Nebula.Services.ActionItems;
+using Nebula.Services.Common.Validators.ActionItems;
 using Nebula.Services.Common.Validators.Networking;
-using Nebula.Services.Common.Validators.Tasks;
 using Nebula.Services.Networking;
-using Nebula.Services.Tasks;
 
 namespace Nebula.Infrastructure.Extensions.Dependencies;
 
@@ -25,11 +25,11 @@ public static partial class DependencyInjection
     {
         // Register services
         services.AddScoped<IPersonService, PersonService>();
-        services.AddScoped<ITaskService, TaskService>();
+        services.AddScoped<IActionItemService, ActionItemService>();
 
         // Register validators
         services.AddScoped<IValidator<CreatePersonCommand>, CreatePersonCommandValidator>();
-        services.AddScoped<IValidator<CreateTaskCommand>, CreateTaskCommandValidator>();
+        services.AddScoped<IValidator<CreateActionItemCommand>, CreateActionItemCommandValidator>();
 
         // Add FluentValidation
         services.AddValidatorsFromAssemblyContaining<CreatePersonCommandValidator>();

@@ -1,19 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Nebula.Domain.Entities.ActionItems;
 using Nebula.Infrastructure.Data.Entities.Configuration.Shared;
-using Task = Nebula.Domain.Entities.Tasks.Task;
 
 namespace Nebula.Infrastructure.Data.Entities.Configuration;
 
 /// <summary>
-///     EF Core configuration for the <see cref="Domain.Entities.Tasks.Task" /> entity.
+///     EF Core configuration for the <see cref="ActionItem" /> entity.
 /// </summary>
-internal sealed class TaskConfiguration : BaseEntityConfiguration<Task, Guid>
+internal sealed class TaskConfiguration : BaseEntityConfiguration<ActionItem, Guid>
 {
     /// <inheritdoc />
-    protected override void ConfigureEntity(EntityTypeBuilder<Task> builder)
+    protected override void ConfigureEntity(EntityTypeBuilder<ActionItem> builder)
     {
-        builder.ToTable("Tasks");
+        builder.ToTable("ActionItems");
 
         builder.Property(t => t.Text)
             .IsRequired()

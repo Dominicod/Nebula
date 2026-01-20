@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore.Storage;
 using Nebula.Contracts.Repositories;
+using Nebula.Contracts.Repositories.ActionItems;
 using Nebula.Contracts.Repositories.Networking;
-using Nebula.Contracts.Repositories.Tasks;
 using Nebula.Infrastructure.Data.Repositories.Networking;
 using Nebula.Infrastructure.Data.Repositories.Tasks;
 
@@ -18,7 +18,7 @@ internal sealed class UnitOfWork(NebulaDbContext context) : IUnitOfWork
     public IPersonRepository Persons => field ??= new PersonRepository(_context);
 
     /// <inheritdoc />
-    public ITaskRepository Tasks => field ??= new TaskRepository(_context);
+    public IActionItemRepository ActionItems => field ??= new ActionItemRepository(_context);
 
     /// <inheritdoc />
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

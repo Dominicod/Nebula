@@ -8,7 +8,7 @@ namespace Nebula.Infrastructure.Data.Entities.Configuration;
 /// <summary>
 ///     EF Core configuration for the <see cref="ActionItem" /> entity.
 /// </summary>
-internal sealed class TaskConfiguration : BaseEntityConfiguration<ActionItem, Guid>
+internal sealed class ActionItemConfiguration : BaseEntityConfiguration<ActionItem, Guid>
 {
     /// <inheritdoc />
     protected override void ConfigureEntity(EntityTypeBuilder<ActionItem> builder)

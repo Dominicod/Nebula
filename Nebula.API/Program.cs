@@ -3,6 +3,9 @@ using Nebula.Infrastructure.Extensions.Dependencies;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configuration
+builder.Configuration.AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true);
+
 // Services
 builder.Services.AddOpenApi();
 builder.Services.AddSqlServer(builder.Configuration);
@@ -15,7 +18,6 @@ builder.Services.AddApiVersioning(options =>
     options.ReportApiVersions = true;
 });
 
-// Configuration
 var app = builder.Build();
 if (app.Environment.IsDevelopment()) app.MapOpenApi();
 

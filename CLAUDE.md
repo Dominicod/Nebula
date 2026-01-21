@@ -18,3 +18,9 @@ When possible, use sub-agents (Task tool) to handle specialized work in parallel
 - Use the **Bash** agent for git operations and command execution
 - Use the **Plan** agent for designing implementation strategies
 - Run independent tasks concurrently to maximize efficiency
+
+### Use MCP Servers
+When available, prefer MCP server tools over built-in alternatives:
+- **microsoft-learn** - Use for .NET, C#, Azure, and Microsoft technology documentation lookups
+- **fetch** - Use for fetching web content instead of the built-in WebFetch tool
+- **git** - Use for git operations instead of running git commands via Bash

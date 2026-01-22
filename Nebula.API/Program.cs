@@ -10,6 +10,7 @@ builder.Configuration.AddJsonFile("appsettings.local.json", optional: true, relo
 builder.Services.AddOpenApi();
 builder.Services.AddSqlServer(builder.Configuration);
 builder.Services.AddNebulaServices();
+builder.Services.AddNebulaRepositories();
 builder.Services.AddValidation(); // Allows data-attributes to be assigned to requests for model validation
 builder.Services.AddApiVersioning(options =>
 {

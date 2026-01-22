@@ -1,11 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Nebula.Contracts.Repositories;
-using Nebula.Contracts.Repositories.Networking;
 using Nebula.Infrastructure.Configuration;
 using Nebula.Infrastructure.Data;
-using Nebula.Infrastructure.Data.Repositories.Networking;
 
 namespace Nebula.Infrastructure.Extensions.Dependencies;
 
@@ -30,10 +27,5 @@ public static partial class DependencyInjection
 
         services.AddDbContext<NebulaDbContext>(options =>
             options.UseAzureSql(dbConfig.ConnectionString));
-
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-        // Repositories
-        services.AddScoped<IPersonRepository, PersonRepository>();
     }
 }

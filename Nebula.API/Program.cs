@@ -1,10 +1,20 @@
 using Asp.Versioning;
 using Nebula.Infrastructure.Extensions.Dependencies;
+using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Async(a => a.Console())
+    .CreateBootstrapLogger();
 
-// Configuration
-builder.Configuration.AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true);
+try
+{
+    var builder = WebApplication.CreateBuilder(args);
+    builder.Host.UseSerilog((context, configuration) => configuration
+        .ReadFrom.Configuration(context.Configuration)
+        .WriteTo.Async(a => a.Console()));
+
+    // Configuration
+    builder.Configuration.AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true);
 
 // Services
 builder.Services.AddOpenApi();
@@ -19,10 +29,19 @@ builder.Services.AddApiVersioning(options =>
     options.ReportApiVersions = true;
 });
 
-var app = builder.Build();
-if (app.Environment.IsDevelopment()) app.MapOpenApi();
+    var app = builder.Build();
+    if (app.Environment.IsDevelopment()) app.MapOpenApi();
 
-// Using
-app.UseHttpsRedirection();
+    // Using
+    app.UseHttpsRedirection();
 
-app.Run();
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}

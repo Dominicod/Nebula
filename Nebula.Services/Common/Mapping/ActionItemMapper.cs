@@ -1,5 +1,6 @@
 using Nebula.DataTransfer.Contracts.ActionItems;
 using Nebula.Domain.Entities.ActionItems;
+using Nebula.Domain.Entities.ActionItemTypes;
 
 namespace Nebula.Services.Common.Mapping;
 
@@ -21,6 +22,8 @@ internal static class ActionItemMapper
             Text = actionItem.Text,
             IsCompleted = actionItem.IsCompleted,
             CompletedAt = actionItem.CompletedAt,
+            ActionItemTypeId = actionItem.ActionItemTypeId,
+            ActionItemTypeName = actionItem.ActionItemType.Name,
             CreatedAt = actionItem.CreatedAt,
             UpdatedAt = actionItem.UpdatedAt
         };
@@ -46,15 +49,18 @@ internal static class ActionItemMapper
     ///     Note: CreatedAt/UpdatedAt are managed by the database via EF Core configuration.
     /// </summary>
     /// <param name="command">The CreateActionItemCommand.</param>
+    /// <param name="actionItemType">The ActionItemType entity.</param>
     /// <returns>A new ActionItem entity.</returns>
-    public static ActionItem FromCreateCommand(CreateActionItemCommand command)
+    public static ActionItem FromCreateCommand(CreateActionItemCommand command, ActionItemType actionItemType)
     {
         return new ActionItem
         {
             Id = Guid.NewGuid(),
             Text = command.Text,
             IsCompleted = false,
-            CompletedAt = null
+            CompletedAt = null,
+            ActionItemTypeId = actionItemType.Id,
+            ActionItemType = actionItemType
         };
     }
 }

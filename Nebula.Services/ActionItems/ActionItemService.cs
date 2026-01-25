@@ -83,7 +83,14 @@ public sealed class ActionItemService(
                 return result;
             }
 
-            var actionItem = ActionItemMapper.FromCreateCommand(command);
+            var actionItemType = await _unitOfWork.ActionItemTypes.GetByIdAsync(command.ActionItemTypeId, cancellationToken);
+            if (actionItemType == null)
+            {
+                return TypedResult<ActionItemResponse>.Result()
+                    .WithErrorMessage($"ActionItemType with ID '{command.ActionItemTypeId}' not found.");
+            }
+
+            var actionItem = ActionItemMapper.FromCreateCommand(command, actionItemType);
 
             await _unitOfWork.ActionItems.AddAsync(actionItem, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);

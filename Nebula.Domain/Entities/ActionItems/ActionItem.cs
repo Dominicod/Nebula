@@ -1,3 +1,4 @@
+using Nebula.Domain.Entities.ActionItemTypes;
 using Nebula.Domain.Entities.Common;
 
 namespace Nebula.Domain.Entities.ActionItems;
@@ -21,4 +22,14 @@ public class ActionItem : BaseEntity<Guid>
     ///     When the actionItem was marked as completed (null if not completed).
     /// </summary>
     public DateTime? CompletedAt { get; set; }
+
+    /// <summary>
+    ///     The foreign key for the action item type.
+    /// </summary>
+    public required Guid ActionItemTypeId { get; init; }
+
+    /// <summary>
+    ///     The type/category of this action item.
+    /// </summary>
+    public required ActionItemType ActionItemType { get; init; }
 }

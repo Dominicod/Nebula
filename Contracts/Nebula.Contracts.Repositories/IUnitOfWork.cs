@@ -1,4 +1,5 @@
 using Nebula.Contracts.Repositories.ActionItems;
+using Nebula.Contracts.Repositories.ActionItemTypes;
 using Nebula.Contracts.Repositories.Networking;
 
 namespace Nebula.Contracts.Repositories;
@@ -17,6 +18,11 @@ public interface IUnitOfWork : IDisposable
     ///     Gets the ActionItem repository.
     /// </summary>
     IActionItemRepository ActionItems { get; }
+
+    /// <summary>
+    ///     Gets the ActionItemType repository.
+    /// </summary>
+    IActionItemTypeRepository ActionItemTypes { get; }
 
     /// <summary>
     ///     Saves all changes made in this unit of work to the database.

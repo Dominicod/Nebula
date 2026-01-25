@@ -28,6 +28,16 @@ public sealed record ActionItemResponse : IResponse
     public DateTime? CompletedAt { get; init; }
 
     /// <summary>
+    ///     Gets the action item type identifier.
+    /// </summary>
+    public required Guid ActionItemTypeId { get; init; }
+
+    /// <summary>
+    ///     Gets the name of the action item type.
+    /// </summary>
+    public required string ActionItemTypeName { get; init; }
+
+    /// <summary>
     ///     Gets the date and time when the actionItem was created.
     /// </summary>
     public required DateTimeOffset CreatedAt { get; init; }

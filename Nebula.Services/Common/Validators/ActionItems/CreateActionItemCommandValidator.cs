@@ -15,5 +15,9 @@ public sealed class CreateActionItemCommandValidator : AbstractValidator<CreateA
             .WithMessage("Text is required.")
             .MaximumLength(2000)
             .WithMessage("Text cannot exceed 2000 characters.");
+
+        RuleFor(x => x.ActionItemTypeId)
+            .NotEmpty()
+            .WithMessage("ActionItemTypeId is required.");
     }
 }

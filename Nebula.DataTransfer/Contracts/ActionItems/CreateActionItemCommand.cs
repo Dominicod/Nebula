@@ -14,4 +14,10 @@ public sealed record CreateActionItemCommand : ICommand
     [Required(ErrorMessage = "Text is required")]
     [MaxLength(2000, ErrorMessage = "Text cannot exceed 2000 characters")]
     public required string Text { get; init; }
+
+    /// <summary>
+    ///     Gets the action item type identifier.
+    /// </summary>
+    [Required(ErrorMessage = "ActionItemTypeId is required")]
+    public required Guid ActionItemTypeId { get; init; }
 }

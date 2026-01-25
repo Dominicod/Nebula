@@ -66,7 +66,7 @@ namespace Nebula.Infrastructure.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ActionItemTypeId")
+                    b.Property<Guid>("ActionItemTypeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("CompletedAt")
@@ -127,7 +127,8 @@ namespace Nebula.Infrastructure.Data.Migrations
                     b.HasOne("Nebula.Domain.Entities.ActionItemTypes.ActionItemType", "ActionItemType")
                         .WithMany()
                         .HasForeignKey("ActionItemTypeId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("ActionItemType");
                 });

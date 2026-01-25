@@ -27,11 +27,11 @@ internal sealed class ActionItemConfiguration : BaseEntityConfiguration<ActionIt
             .IsRequired(false);
 
         builder.Property(t => t.ActionItemTypeId)
-            .IsRequired(false);
+            .IsRequired();
 
         builder.HasOne(t => t.ActionItemType)
             .WithMany()
             .HasForeignKey(t => t.ActionItemTypeId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

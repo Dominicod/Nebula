@@ -26,10 +26,10 @@ public class ActionItem : BaseEntity<Guid>
     /// <summary>
     ///     The foreign key for the action item type.
     /// </summary>
-    public Guid? ActionItemTypeId { get; set; }
+    public required Guid ActionItemTypeId { get; init; }
 
     /// <summary>
     ///     The type/category of this action item.
     /// </summary>
-    public ActionItemType? ActionItemType { get; set; }
+    public required ActionItemType ActionItemType { get; init; }
 }

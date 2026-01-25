@@ -31,7 +31,7 @@ namespace Nebula.Infrastructure.Data.Migrations
                 name: "ActionItemTypeId",
                 table: "ActionItems",
                 type: "uniqueidentifier",
-                nullable: true);
+                nullable: false);
 
             migrationBuilder.InsertData(
                 table: "ActionItemTypes",
@@ -53,7 +53,7 @@ namespace Nebula.Infrastructure.Data.Migrations
                 column: "ActionItemTypeId",
                 principalTable: "ActionItemTypes",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.SetNull);
+                onDelete: ReferentialAction.Restrict);
         }
 
         /// <inheritdoc />

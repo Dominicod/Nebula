@@ -18,5 +18,19 @@ internal sealed class ActionItemTypeConfiguration : BaseEntityConfiguration<Acti
         builder.Property(t => t.Name)
             .IsRequired()
             .HasMaxLength(200);
+
+        // Seed default action item types
+        builder.HasData(
+            new ActionItemType
+            {
+                Id = new Guid("a1b2c3d4-e5f6-7890-abcd-ef1234567890"),
+                Name = "Home"
+            },
+            new ActionItemType
+            {
+                Id = new Guid("b2c3d4e5-f6a7-8901-bcde-f12345678901"),
+                Name = "Work"
+            }
+        );
     }
 }

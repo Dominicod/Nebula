@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Nebula.Domain.Entities.ActionItems;
+using Nebula.Domain.Entities.ActionItemTypes;
 using Nebula.Domain.Entities.Networking;
 
 namespace Nebula.Infrastructure.Data;
@@ -21,6 +22,11 @@ internal sealed class NebulaDbContext : DbContext
     ///     Gets or sets the ActionItems DbSet.
     /// </summary>
     public DbSet<ActionItem> Tasks { get; set; }
+
+    /// <summary>
+    ///     Gets or sets the ActionItemTypes DbSet.
+    /// </summary>
+    public DbSet<ActionItemType> ActionItemTypes { get; set; }
 
     /// <inheritdoc />
     protected override void OnModelCreating(ModelBuilder modelBuilder)

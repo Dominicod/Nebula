@@ -25,5 +25,13 @@ internal sealed class ActionItemConfiguration : BaseEntityConfiguration<ActionIt
 
         builder.Property(t => t.CompletedAt)
             .IsRequired(false);
+
+        builder.Property(t => t.ActionItemTypeId)
+            .IsRequired(false);
+
+        builder.HasOne(t => t.ActionItemType)
+            .WithMany()
+            .HasForeignKey(t => t.ActionItemTypeId)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }
